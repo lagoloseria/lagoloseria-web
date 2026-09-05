@@ -1,516 +1,203 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>La Golosería | Próximamente</title>
-
-    <meta
-        name="description"
-        content="La Golosería. Los antojos también alimentan el alma. Muy pronto."
-    >
-
-    <style>
-        :root{
-            --crema:#f5ecd9;
-            --crema-claro:#fbf7ef;
-            --verde:#556b2f;
-            --verde-oscuro:#39471f;
-            --verde-suave:#718547;
-            --naranja:#d88a19;
-            --dorado:#e3ad43;
-            --texto:#3f3a2e;
-        }
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        html{
-            scroll-behavior:smooth;
-        }
-
-        body{
-            min-height:100vh;
-            font-family:
-                Inter,
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-
-            color:var(--texto);
-            background:
-                radial-gradient(
-                    circle at 8% 14%,
-                    rgba(216,138,25,.12),
-                    transparent 24%
-                ),
-                radial-gradient(
-                    circle at 92% 82%,
-                    rgba(85,107,47,.12),
-                    transparent 26%
-                ),
-                var(--crema);
-
-            overflow-x:hidden;
-        }
-
-        .pagina{
-            min-height:100vh;
-            display:flex;
-            flex-direction:column;
-        }
-
-        /* ---------- HERO ---------- */
-
-        .hero{
-            position:relative;
-            flex:1;
-            min-height:84vh;
-
-            display:flex;
-            align-items:center;
-            justify-content:center;
-
-            padding:48px 24px 40px;
-            overflow:hidden;
-        }
-
-        /* bloques orgánicos decorativos */
-
-        .hero::before{
-            content:"";
-            position:absolute;
-            width:420px;
-            height:420px;
-            border-radius:50%;
-            background:var(--verde);
-            opacity:.075;
-            top:-220px;
-            right:-130px;
-        }
-
-        .hero::after{
-            content:"";
-            position:absolute;
-            width:300px;
-            height:300px;
-            border-radius:50%;
-            background:var(--naranja);
-            opacity:.07;
-            bottom:-180px;
-            left:-100px;
-        }
-
-        .contenido{
-            position:relative;
-            z-index:2;
-
-            width:min(900px, 100%);
-            text-align:center;
-        }
-
-        .bienvenida{
-            display:inline-flex;
-            align-items:center;
-            gap:10px;
-
-            margin-bottom:18px;
-
-            font-size:.82rem;
-            font-weight:700;
-            letter-spacing:.19em;
-            text-transform:uppercase;
-
-            color:var(--naranja);
-        }
-
-        .bienvenida::before,
-        .bienvenida::after{
-            content:"";
-            width:28px;
-            height:1px;
-            background:currentColor;
-            opacity:.65;
-        }
-
-        .logo{
-            display:block;
-
-            width:min(760px, 92vw);
-            max-height:340px;
-            object-fit:contain;
-
-            margin:0 auto 12px;
-
-            filter:drop-shadow(
-                0 12px 20px rgba(57,71,31,.10)
-            );
-        }
-
-        .filosofia{
-            max-width:680px;
-            margin:12px auto 0;
-
-            font-family:Georgia, "Times New Roman", serif;
-            font-size:clamp(1.7rem, 4vw, 3rem);
-            font-weight:500;
-            line-height:1.18;
-
-            color:var(--verde-oscuro);
-        }
-
-        .filosofia em{
-            font-style:italic;
-            color:var(--verde);
-        }
-
-        .linea{
-            width:54px;
-            height:3px;
-            border-radius:10px;
-
-            margin:26px auto;
-
-            background:var(--naranja);
-        }
-
-        .mensaje{
-            max-width:590px;
-            margin:0 auto;
-
-            font-size:clamp(1rem, 2vw, 1.18rem);
-            line-height:1.7;
-
-            color:#655e50;
-        }
-
-        .acciones{
-            margin-top:30px;
-
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            flex-wrap:wrap;
-            gap:12px;
-        }
-
-        .boton{
-            display:inline-flex;
-            justify-content:center;
-            align-items:center;
-
-            min-height:50px;
-            padding:0 25px;
-
-            border-radius:999px;
-
-            font-size:.95rem;
-            font-weight:700;
-            text-decoration:none;
-
-            transition:
-                transform .2s ease,
-                box-shadow .2s ease,
-                background .2s ease;
-        }
-
-        .boton-principal{
-            background:var(--verde);
-            color:#fff;
-
-            box-shadow:
-                0 10px 25px rgba(57,71,31,.15);
-        }
-
-        .boton-principal:hover{
-            transform:translateY(-2px);
-            background:var(--verde-oscuro);
-        }
-
-        .boton-secundario{
-            color:var(--verde-oscuro);
-            border:1px solid rgba(85,107,47,.35);
-            background:rgba(255,255,255,.28);
-        }
-
-        .boton-secundario:hover{
-            transform:translateY(-2px);
-            background:rgba(255,255,255,.55);
-        }
-
-        .proxima{
-            margin-top:24px;
-
-            display:inline-flex;
-            align-items:center;
-            gap:8px;
-
-            color:var(--verde);
-            font-size:.87rem;
-            font-weight:650;
-        }
-
-        .punto{
-            width:8px;
-            height:8px;
-            border-radius:50%;
-            background:var(--naranja);
-
-            box-shadow:
-                0 0 0 6px rgba(216,138,25,.10);
-        }
-
-        /* ---------- ALTAGRACIA ---------- */
-
-        .altagracia{
-            position:relative;
-            z-index:2;
-
-            width:min(680px, calc(100% - 48px));
-            margin:0 auto 26px;
-
-            padding:14px 20px;
-
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            gap:10px;
-
-            border-top:
-                1px solid rgba(85,107,47,.16);
-
-            color:#766e5d;
-            font-size:.78rem;
-            letter-spacing:.05em;
-        }
-
-        .altagracia strong{
-            color:var(--verde);
-            font-weight:750;
-            letter-spacing:.08em;
-        }
-
-        .corazon{
-            color:var(--naranja);
-            font-size:1rem;
-        }
-
-        /* ---------- FOOTER ---------- */
-
-        footer{
-            background:var(--verde-oscuro);
-            color:rgba(255,255,255,.82);
-
-            padding:24px;
-        }
-
-        .footer-contenido{
-            width:min(1000px, 100%);
-            margin:auto;
-
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            gap:20px;
-            flex-wrap:wrap;
-        }
-
-        .copyright{
-            font-size:.78rem;
-            line-height:1.6;
-        }
-
-        .redes{
-            display:flex;
-            align-items:center;
-            gap:17px;
-        }
-
-        .redes a{
-            color:#fff;
-            text-decoration:none;
-
-            font-size:.82rem;
-            font-weight:650;
-
-            transition:opacity .2s ease;
-        }
-
-        .redes a:hover{
-            opacity:.7;
-        }
-
-        .instagram{
-            color:#fff;
-        }
-
-        /* ---------- RESPONSIVE ---------- */
-
-        @media (max-width:700px){
-
-            .hero{
-                min-height:auto;
-                padding:
-                    44px 18px
-                    38px;
-            }
-
-            .logo{
-                width:min(600px, 108vw);
-                margin-left:50%;
-                transform:translateX(-50%);
-            }
-
-            .filosofia{
-                max-width:390px;
-            }
-
-            .mensaje{
-                max-width:420px;
-                padding:0 8px;
-            }
-
-            .acciones{
-                flex-direction:column;
-            }
-
-            .boton{
-                width:min(300px, 90vw);
-            }
-
-            .footer-contenido{
-                flex-direction:column;
-                text-align:center;
-            }
-        }
-
-        @media (max-width:420px){
-
-            .bienvenida{
-                font-size:.7rem;
-            }
-
-            .logo{
-                width:115vw;
-            }
-
-            .filosofia{
-                font-size:1.9rem;
-            }
-
-            .mensaje{
-                font-size:.98rem;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>La Golosería</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#F5EFE3;
+    font-family: Georgia, serif;
+    color:#2F4A2E;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:60px 20px;
+    text-align:center;
+}
+
+.logo{
+    width:500px;
+    max-width:90%;
+    height:auto;
+    display:block;
+    margin:0 auto 20px;
+}
+
+.portada{
+    width:100%;
+    max-width:1000px;
+    height:auto;
+    border-radius:20px;
+    margin:40px auto;
+    display:block;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.bienvenida{
+    color:#D39B2A;
+    letter-spacing:4px;
+    font-size:14px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:4rem;
+    font-weight:normal;
+    line-height:1.2;
+    color:#41592E;
+    margin-bottom:20px;
+}
+
+h1 em{
+    font-style:italic;
+    color:#6B8246;
+}
+
+.linea{
+    width:80px;
+    height:4px;
+    background:#D39B2A;
+    margin:25px auto;
+    border-radius:10px;
+}
+
+.descripcion{
+    max-width:700px;
+    margin:auto;
+    font-size:1.3rem;
+    line-height:1.8;
+    color:#666;
+}
+
+.botones{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.btn{
+    padding:16px 32px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-principal{
+    background:#5D7A3E;
+    color:white;
+}
+
+.btn-principal:hover{
+    opacity:.9;
+}
+
+.btn-secundario{
+    border:2px solid #CFC3A0;
+    color:#2F4A2E;
+    background:white;
+}
+
+.estado{
+    margin-top:30px;
+    color:#5D7A3E;
+    font-weight:600;
+}
+
+.footer{
+    margin-top:80px;
+    padding-top:30px;
+    border-top:1px solid #DDD2B7;
+    color:#777;
+}
+
+.footer strong{
+    color:#5D7A3E;
+}
+
+@media(max-width:768px){
+
+    .logo{
+        width:320px;
+    }
+
+    h1{
+        font-size:2.5rem;
+    }
+
+    .descripcion{
+        font-size:1.1rem;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="pagina">
+<div class="container">
 
-    <main class="hero">
-
-        <section class="contenido">
-
-            <div class="bienvenida">
-                Bienvenido a
-            </div>
-
-            <img
-                class="logo"
-            <img src="logo-goloseria.png" alt="La Golosería" class="logo"> 
-                alt="La Golosería" 
-                class="logo">
-
-            <h1 class="filosofia">
-                Los antojos también
-                <em>alimentan el alma.</em>
-            </h1>
-
-            <div class="linea"></div>
-
-            <p class="mensaje">
-                Estamos creando algo para disfrutar sin prisa,
-                compartir buenos momentos y convertir lo cotidiano
-                en un pequeño recuerdo.
-            </p>
-
-            <div class="acciones">
-
-                <a
-                    class="boton boton-principal"
-                    href="https://www.instagram.com/lagoloseria.co/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Síguenos en Instagram
-                </a>
-
-                <span class="boton boton-secundario">
-                    Próxima apertura
-                </span>
-
-            </div>
-
-            <div class="proxima">
-                <span class="punto"></span>
-                Estamos preparando algo especial
-            </div>
-
-        </section>
-
-    </main>
-
-    <div class="altagracia">
-        <span>Con el espíritu de</span>
-        <strong>ALTAGRACIA</strong>
-        <span class="corazon">♡</span>
-        <span>por La Golosería</span>
+    <div class="bienvenida">
+        Bienvenido a
     </div>
 
-    <footer>
+    <img src="logo-goloseria.png" alt="La Golosería" class="logo">
 
-        <div class="footer-contenido">
+    <h1>
+        Los antojos también
+        <em>alimentan el alma.</em>
+    </h1>
 
-            <div class="copyright">
-                © 2026 La Golosería<br>
-                Todos los derechos reservados.
-            </div>
+    <div class="linea"></div>
 
-            <nav
-                class="redes"
-                aria-label="Redes sociales"
-            >
+    <p class="descripcion">
+        Estamos creando algo para disfrutar sin prisa,
+        compartir buenos momentos y convertir lo cotidiano
+        en un pequeño recuerdo.
+    </p>
 
-                <a
-                    class="instagram"
-                    href="https://www.instagram.com/lagoloseria.co/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Instagram · @lagoloseria.co
-                </a>
+    <div class="botones">
 
-                <a
-                    href="#"
-                    title="Facebook La Golosería"
-                >
-                    Facebook
-                </a>
+        <a href="https://instagram.com/lagoloseria.co"
+           target="_blank"
+           class="btn btn-principal">
+           Síguenos en Instagram
+        </a>
 
-            </nav>
+        <a href="#"
+           class="btn btn-secundario">
+           Próxima apertura
+        </a>
 
-        </div>
+    </div>
 
-    </footer>
+    <div class="estado">
+        ✨ Estamos preparando algo especial
+    </div>
+
+    <img src="portada.jpg" alt="Portada La Golosería" class="portada">
+
+    <div class="footer">
+        Con el espíritu de <strong>ALTAGRACIA</strong> ♥ por La Golosería
+        <br><br>
+        © 2026 La Golosería
+    </div>
 
 </div>
 
